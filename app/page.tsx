@@ -15,14 +15,24 @@ export default function Home() {
         and share your progress on X — all in one place.
       </p>
 
-      <div className="flex gap-4">
-        {/* REAL WALLET CONNECT BUTTON */}
+      <div className="flex gap-4 mb-6">
         <ConnectButton />
 
-        <button className="px-6 py-3 rounded-lg border border-gray-600 hover:bg-gray-800 transition">
+        <a
+          href="/airdrops"
+          className="px-6 py-3 rounded-lg border border-gray-600 hover:bg-gray-800 transition"
+        >
           Explore Airdrops
-        </button>
+        </a>
       </div>
+
+      {/* Tweet Generator Link */}
+      <a
+        href="/tweet"
+        className="text-blue-400 hover:underline"
+      >
+        Generate Base Tweet →
+      </a>
 
       <p className="mt-10 text-sm text-gray-500">
         Built on Base • Early Builder Tool
