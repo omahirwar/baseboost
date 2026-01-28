@@ -1,3 +1,7 @@
+"use client";
+
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">
@@ -12,9 +16,8 @@ export default function Home() {
       </p>
 
       <div className="flex gap-4">
-        <button className="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 transition">
-          Connect Wallet
-        </button>
+        {/* REAL WALLET CONNECT BUTTON */}
+        <ConnectButton />
 
         <button className="px-6 py-3 rounded-lg border border-gray-600 hover:bg-gray-800 transition">
           Explore Airdrops
