@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 
 type Mission = {
@@ -34,15 +34,47 @@ const MISSIONS: Mission[] = [
 export default function GamePage() {
   const { address, isConnected } = useAccount();
   const [completed, setCompleted] = useState<number[]>([]);
-  const totalXP = completed.reduce((sum, id) => {
-    const m = MISSIONS.find((x) => x.id === id);
-    return sum + (m ? m.xp : 0);
-  }, 0);
+  const [totalXP, setTotalXP] = useState(0);
+
+  // Load saved progress
+  useEffect(() => {
+    if (!address) return;
+
+    const savedCompleted = localStorage.getItem(
+      `baseboost_done_${address}`
+    );
+    const savedXP = localStorage.getItem(
+      `baseboost_xp_${address}`
+    );
+
+    if (savedCompleted) {
+      setCompleted(JSON.parse(savedCompleted));
+    }
+    if (savedXP) {
+      setTotalXP(Number(savedXP));
+    }
+  }, [address]);
 
   function completeMission(id: number) {
-    if (!completed.includes(id)) {
-      setCompleted([...completed, id]);
-    }
+    if (!address || completed.includes(id)) return;
+
+    const mission = MISSIONS.find((m) => m.id === id);
+    if (!mission) return;
+
+    const newCompleted = [...completed, id];
+    const newXP = totalXP + mission.xp;
+
+    setCompleted(newCompleted);
+    setTotalXP(newXP);
+
+    localStorage.setItem(
+      `baseboost_done_${address}`,
+      JSON.stringify(newCompleted)
+    );
+    localStorage.setItem(
+      `baseboost_xp_${address}`,
+      newXP.toString()
+    );
   }
 
   return (
@@ -119,9 +151,8 @@ export default function GamePage() {
           })}
         </div>
 
-        {/* Footer note */}
         <p className="mt-10 text-center text-sm text-gray-500">
-          Rewards distributed weekly • Built on Base
+          Progress is saved per wallet • Built on Base
         </p>
       </div>
     </main>
