@@ -10,13 +10,13 @@ export default function Home() {
         BaseBoost 🔵
       </h1>
 
-      <p className="max-w-xl text-gray-300 mb-8">
-        Track Base ecosystem airdrops, complete missions, play games, 
-        and share your progress on X — all in one place.
+      <p className="max-w-xl text-gray-300 mb-10">
+        Track Base ecosystem airdrops, complete missions, play games,
+        climb the leaderboard, and share your progress on X — all in one place.
       </p>
 
-      {/* Primary Actions */}
-      <div className="flex flex-wrap gap-4 justify-center mb-6">
+      {/* PRIMARY ACTIONS */}
+      <div className="flex flex-wrap gap-4 justify-center mb-8">
         <ConnectButton showBalance={false} />
 
         <a
@@ -34,18 +34,19 @@ export default function Home() {
         </a>
       </div>
 
-      {/* Secondary Links */}
-      <div className="flex gap-6 text-sm">
-        <a href="/tweet" className="text-blue-400 hover:underline">
-          Generate Base Tweet →
+      {/* SECONDARY LINKS */}
+      <div className="flex flex-wrap gap-6 justify-center text-sm mb-6">
+        <a href="/leaderboard" className="text-blue-400 hover:underline">
+          🏆 View Leaderboard
         </a>
 
-        <a href="/game" className="text-blue-400 hover:underline">
-          View Game Missions →
+        <a href="/tweet" className="text-blue-400 hover:underline">
+          🐦 Generate Base Tweet
         </a>
       </div>
 
-      <p className="mt-12 text-sm text-gray-500">
+      {/* FOOTER */}
+      <p className="mt-10 text-sm text-gray-500">
         Wallet-based onboarding • XP & Rewards • Built on Base
       </p>
 
